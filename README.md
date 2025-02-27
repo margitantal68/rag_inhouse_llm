@@ -43,9 +43,9 @@ Chat with your PDF using Python, Langchain and ollama
 
 
 1. Change the **base_url** and the **model** in the **main.py** file to the URL of your ollama instance and your model.
-```python
-llm = OllamaLLM(base_url="http://192.168.11.102:11500", model="mistral-nemo:12b-instruct-2407-q8_0") 
-```
+    ```python
+    llm = OllamaLLM(base_url="http://192.168.11.102:11500", model="mistral-nemo:12b-instruct-2407-q8_0") 
+    ```
 1. Run the project:
     ```bash
     python main.py

@@ -37,6 +37,7 @@ def setup_qa_system(file_path):
     retriever = vector_store.as_retriever()
 
     llm = OllamaLLM(base_url="http://192.168.11.102:11500", model="mistral-nemo:12b-instruct-2407-q8_0") 
+    # llm = OllamaLLM(base_url="http://192.168.11.102:11500", model="qwen2.5:7b")
 
     # Define the system prompt
     system_prompt = (
@@ -58,7 +59,7 @@ def setup_qa_system(file_path):
 
 if __name__ == '__main__':
     EN_DOCUMENT = "data/RAG_Evaluation_Survey.pdf"
-    HU_DOCUMENT = "data/hatarozatok_249.pdf"
+    # HU_DOCUMENT = "data/hatarozatok_249.pdf"
 
 
     DOCUMENT = EN_DOCUMENT
