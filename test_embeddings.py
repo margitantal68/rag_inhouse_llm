@@ -35,6 +35,9 @@ if __name__ == "__main__":
     distance13 = cosine_distance(embedding1, embedding3)
     distance34 = cosine_distance(embedding3, embedding4)
 
+    # print("Embedding for <{text1}>:", embedding1)
+    print("Dimension of the embeddings:", len(embedding1))
+
     print(f"LOCAL MODEL - Cosine distance between <{text1}> and <{text2}> embeddings: {distance12:.4f}")
     print(f"LOCAL MODEL - Cosine distance between <{text1}> and <{text3}> embeddings: {distance13:.4f}")
     print(f"LOCAL MODEL - Cosine distance between <{text3}> and <{text4}> embeddings: {distance34:.4f}")
