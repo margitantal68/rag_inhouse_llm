@@ -4,33 +4,29 @@ from dotenv import load_dotenv
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import OllamaEmbeddings  
-from langchain_huggingface import HuggingFaceEmbeddings
 
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_community.llms import Ollama  
 from langchain_ollama.llms import OllamaLLM
+from langchain_ollama import OllamaEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 load_dotenv()
-
 
 def setup_qa_system(file_path):
     # Load and split the PDF document
     loader = PyPDFLoader(file_path)
     docs = loader.load_and_split()
+    print(f"The original document has been pplit into {len(docs)} documents")
 
     # Split the documents into chunks
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
     chunks = text_splitter.split_documents(docs)
-
+    print(f"The original document has been pplit into {len(chunks)} chunks")
     
-    # English text 
-    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
+    embeddings = OllamaEmbeddings(base_url="http://192.168.11.102:11500", model="nomic-embed-text")
     
-    # Hungarian text
-    # embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/LaBSE")
     vector_store = FAISS.from_documents(chunks, embeddings)
     
     # Create a retriever from the vector store
