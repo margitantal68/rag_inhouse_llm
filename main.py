@@ -18,12 +18,12 @@ def setup_qa_system(file_path):
     # Load and split the PDF document
     loader = PyPDFLoader(file_path)
     docs = loader.load_and_split()
-    print(f"The original document has been pplit into {len(docs)} documents")
+    print(f"The original document has been split into {len(docs)} documents")
 
     # Split the documents into chunks
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
     chunks = text_splitter.split_documents(docs)
-    print(f"The original document has been pplit into {len(chunks)} chunks")
+    print(f"The original document has been split into {len(chunks)} chunks")
     
     embeddings = OllamaEmbeddings(base_url="http://192.168.11.102:11500", model="nomic-embed-text")
     
